@@ -1,4 +1,4 @@
-package com.ian.fix.initiator;
+package com.ian.fix.initiator.quickfix;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,15 +9,19 @@ import quickfix.IncorrectDataFormat;
 import quickfix.IncorrectTagValue;
 import quickfix.Message;
 import quickfix.RejectLogon;
+import quickfix.Session;
 import quickfix.SessionID;
+import quickfix.SessionNotFound;
 import quickfix.UnsupportedMessageType;
 
 @Component
 @RequiredArgsConstructor
 public class QuickfixApplication implements Application {
 
-    public final IncomingMessageCracker incomingMessageCracker;
-    public final OutgoingMessageCracker outgoingMessageCracker;
+    private final IncomingMessageCracker incomingMessageCracker;
+    private final OutgoingMessageCracker outgoingMessageCracker;
+
+    private SessionID sessionID;
 
     @Override
     public void onCreate(SessionID sessionID) {
@@ -26,12 +30,12 @@ public class QuickfixApplication implements Application {
 
     @Override
     public void onLogon(SessionID sessionID) {
-
+        this.sessionID = sessionID;
     }
 
     @Override
     public void onLogout(SessionID sessionID) {
-
+        this.sessionID = null;
     }
 
     @Override
@@ -66,6 +70,13 @@ public class QuickfixApplication implements Application {
     public void fromApp(Message message, SessionID sessionID)
         throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
         incomingMessageCracker.crack(message, sessionID);
+    }
+
+    public void sendMessage(Message message) throws SessionNotFound {
+        if (sessionID == null) {
+            throw new SessionNotFound("Session not found");
+        }
+        Session.sendToTarget(message, sessionID);
     }
 
 }

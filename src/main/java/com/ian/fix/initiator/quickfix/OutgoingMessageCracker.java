@@ -1,4 +1,4 @@
-package com.ian.fix.initiator;
+package com.ian.fix.initiator.quickfix;
 
 import org.springframework.stereotype.Component;
 import quickfix.Message;

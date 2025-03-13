@@ -1,4 +1,4 @@
-package com.ian.fix.initiator;
+package com.ian.fix.initiator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
