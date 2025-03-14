@@ -71,7 +71,7 @@ public class FixService {
     - SubscriptionRequestType = SNAPSHOT_UPDATES
     - MarketDepth = TOP_OF_BOOK
     - MDUpdateType = FULL_REFRESH
-    - Symbol = AAPl
+    - Symbol = AAPL
 
     Outcome
     Successfully receive a MarketDataSnapshotFullRefresh and SecurityStatus messages
