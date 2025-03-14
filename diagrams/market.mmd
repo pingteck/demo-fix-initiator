@@ -1,0 +1,7 @@
+sequenceDiagram
+    Initiator->>+Acceptor: MarketDataRequest (MsgType = V)<br>SubscriptionRequestType = Subscribe (263=1)<br>MarketDepth = Top of Book (264=1)
+    Acceptor->>+Initiator: MarketDataSnapshotFullRefresh (MsgType = W)
+    Acceptor->>+Initiator: SecurityStatus (MsgType = f)
+    OMS->>+ Acceptor: Best bid/ask changed
+    Acceptor->>+Initiator: MarketDataIncrementalUpdate (MsgType = X)
+

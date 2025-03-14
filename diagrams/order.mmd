@@ -1,0 +1,9 @@
+sequenceDiagram
+    Initiator->>+Acceptor: NewOrderSingle (MsgType = D)
+    Acceptor->>+Initiator: ExecutionReport (MsgType = 8)<br>OrdStatus = Pending New (39=A)
+    Acceptor->>+OMS: Sends order
+    OMS->>+ Acceptor: Confirms order
+    Acceptor->>+Initiator: ExecutionReport (MsgType = 8)<br>OrdStatus = New (39=0)
+    OMS->>+ Acceptor: Order has been filled
+    Acceptor->>+Initiator: ExecutionReport (MsgType = 8)<br>OrdStatus = Filled (39=2)
+

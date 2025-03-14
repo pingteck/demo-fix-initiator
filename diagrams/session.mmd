@@ -1,0 +1,7 @@
+sequenceDiagram
+    Initiator->>+Acceptor: Logon (MsgType = A)
+    Acceptor->>+Initiator: Logon (MsgType = A)
+    Initiator->>+Acceptor: Heartbeat (MsgType = 0)
+    Acceptor->>+Initiator: Heartbeat (MsgType = 0)
+    Initiator->>+Acceptor: Logout (MsgType = 5)
+    Acceptor->>+Initiator: Logout (MsgType = 5)
