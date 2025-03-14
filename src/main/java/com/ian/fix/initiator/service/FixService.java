@@ -13,6 +13,7 @@ import quickfix.field.ClOrdID;
 import quickfix.field.MDReqID;
 import quickfix.field.MDUpdateType;
 import quickfix.field.MarketDepth;
+import quickfix.field.NoMDEntryTypes;
 import quickfix.field.OrdType;
 import quickfix.field.OrderQty;
 import quickfix.field.Price;
@@ -57,9 +58,10 @@ public class FixService {
             new MarketDepth(request.getMarketDepth())
         );
         message.set(new MDUpdateType(request.getMdUpdateType()));
-        NoRelatedSym group = new NoRelatedSym();
-        group.set(new Symbol(request.getSymbol()));
-        message.addGroup(group);
+        message.set(new NoMDEntryTypes(0));
+        NoRelatedSym noRelatedSym = new NoRelatedSym();
+        noRelatedSym.set(new Symbol(request.getSymbol()));
+        message.addGroup(noRelatedSym);
         quickfixApplication.sendMessage(message);
         return new FixMessageResponse<>(request, message);
     }
