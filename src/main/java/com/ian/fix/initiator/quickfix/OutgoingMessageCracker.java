@@ -4,8 +4,6 @@ import org.springframework.stereotype.Component;
 import quickfix.Message;
 import quickfix.MessageCracker;
 import quickfix.SessionID;
-import quickfix.field.Password;
-import quickfix.field.Username;
 import quickfix.fix44.Logon;
 
 @Component
@@ -28,8 +26,7 @@ public class OutgoingMessageCracker extends MessageCracker {
     Successfully establish FIX connectivity with acceptor
      */
     public void onMessage(Logon message, SessionID sessionID) {
-        message.set(new Username("username"));
-        message.set(new Password("password"));
+        // message.set...
     }
 
 }
