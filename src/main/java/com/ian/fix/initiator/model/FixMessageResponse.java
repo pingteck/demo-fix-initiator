@@ -13,7 +13,11 @@ public class FixMessageResponse<T> {
 
     public FixMessageResponse(T request, Message message) {
         this.request = request;
-        this.message = message.toString();
+        this.message = formatMessage(message.toString());
+    }
+
+    private static String formatMessage(String message) {
+        return message.replaceAll("\\u0001", "|");
     }
 
 }
