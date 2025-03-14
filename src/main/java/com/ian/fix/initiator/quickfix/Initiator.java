@@ -1,5 +1,6 @@
 package com.ian.fix.initiator.quickfix;
 
+import com.ian.fix.initiator.log.CustomLogFactory;
 import org.springframework.stereotype.Component;
 import quickfix.ConfigError;
 import quickfix.DefaultMessageFactory;
@@ -8,7 +9,6 @@ import quickfix.LogFactory;
 import quickfix.MessageFactory;
 import quickfix.MessageStoreFactory;
 import quickfix.RuntimeError;
-import quickfix.ScreenLogFactory;
 import quickfix.SessionSettings;
 import quickfix.SocketInitiator;
 
@@ -19,7 +19,7 @@ public class Initiator {
         throws ConfigError, RuntimeError {
 
         final MessageStoreFactory messageStoreFactory = new FileStoreFactory(sessionSettings);
-        final LogFactory logFactory = new ScreenLogFactory();
+        final LogFactory logFactory = new CustomLogFactory(false);
         final MessageFactory messageFactory = new DefaultMessageFactory();
 
         final SocketInitiator socketInitiator = SocketInitiator.newBuilder()
