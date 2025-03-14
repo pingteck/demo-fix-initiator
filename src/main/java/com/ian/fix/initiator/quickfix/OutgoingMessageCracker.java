@@ -16,6 +16,17 @@ public class OutgoingMessageCracker extends MessageCracker {
 
     }
 
+    /*
+    Exercise 1
+
+    Task
+    Implement onMessage to attach the correct credentials to Logon Message
+    - Username = username
+    - Password = password
+
+    Outcome
+    Successfully establish FIX connectivity with acceptor
+     */
     public void onMessage(Logon message, SessionID sessionID) {
         message.set(new Username("username"));
         message.set(new Password("password"));
